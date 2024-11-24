@@ -2,10 +2,13 @@
 #
 
 [ ! -e disk-qemu ] && cat chunk_* > disk-qemu
+
+    # --enable-kvm \
+    # --cpu host \
+
 qemu-system-x86_64 \
     -smp 2 \
-    --enable-kvm \
-    --cpu host \
+    --cpu max \
     -m 1G \
     -drive file=disk-qemu.vmdk,if=ide,id=drv0 \
     -netdev bridge,br=virbr0,id=net0 \
